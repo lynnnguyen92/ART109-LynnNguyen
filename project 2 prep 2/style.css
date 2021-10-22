@@ -11,12 +11,24 @@ body{
   font-family: 'Montserrat', sans-serif;
   max-width: 1000px;
   margin: 0 auto;
+  font-size: 22px;
 }
 
 header {
   display: flex;
 
 }
+
+
+/*
+canvas.sketch2 {
+  margin: auto;
+  top:0px;
+  left:0;
+  position: absolute;
+  z-index: -1;
+  display: block;
+} */
 
 .main-title{
   display: inline-block;

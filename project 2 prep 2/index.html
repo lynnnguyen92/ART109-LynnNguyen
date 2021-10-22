@@ -8,29 +8,23 @@
     </title>
     <!-- CSS -->
     <link rel="stylesheet" href="/style.css" />
-    <!-- JS -->
-    <script language="javascript"type="text/javscript" scr="lib/p5.play.js"></script>
-    <script language="javascript"type="text/javscript" scr="lib/p5.js"></script>
-    <script language="javascript"type="text/javscript" scr="lib/paper-full.js"></script>
-    <script type="text/javascript" src="js/paper.js"></script>
-    <script type="text/paperscript" src="js/myPaper.js" canvas="myCanvas">
-      <script language="javascript"type="text/javscript" scr="lib/paper-full.min.js"></script>
-      <script language="javascript" type="text/javascript" src="myP5-play.js"></script>
-    <script language="javascript" type="text/javascript" src="myPaper.js"></script>
-   <script src="https://cdnjs.cloudflare.com/ajax/libs/p5.js/1.4.0/p5.min.js" integrity="sha512-N4kV7GkNv7QR7RX9YF/olywyIgIwNvfEe2nZtfyj73HdjCUkAfOBDbcuJ/cTaN04JKRnw1YG1wnUyNKMsNgg3g==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
-
+    <!-- P5 JS -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/p5.js/1.4.0/p5.min.js" integrity="sha512-N4kV7GkNv7QR7RX9YF/olywyIgIwNvfEe2nZtfyj73HdjCUkAfOBDbcuJ/cTaN04JKRnw1YG1wnUyNKMsNgg3g==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+      <script src="myP5.js" canvas="sketch2"></script>
+   <!-- Paper JS -->
+   <script src="https://cdnjs.cloudflare.com/ajax/libs/paper.js/0.12.15/paper-full.min.js" integrity="sha512-ovjLI1ZcZe6bw+ImQ21r+sv8q/Vwob2kq7tFidK6E1LWfi0T4uobbmpfEU1//a9h9o5Kkt+MnMWf6rWlg0EiMw==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+  <script type="text/paperscript" src="myPaper.js" canvas="sketch1"></script>
   </head>
 
   <body>
-    <div class="background">
-
-</div>
+    <div class="background"></div>
     <header>
 
       <div class="main-title">
 
         <h1><span style="color:#DD903A">Project 2 Prep 2</span> </h1>
         <h2> <span style="font-size:35px">Technical Exercise 7: Exploring JavaScript Libraries</span></h2>
+      </div>
 </header>
 
 
@@ -38,21 +32,29 @@
         <p>
         Example 1
         </p>
+
+    </div>
+    <p>
+      For the first example, I'm using the "Hit Testing" example from paper.js libraries.
+      For the first example, I'm using the "Hit Testing" example from paper.js libraries.
+       I want to use "Hit Testing" because I want to emulate a puzzle game and this example
+       allows me to create paths or shapes and I can use the mouse to drag them around. <br><br>
+      Example can be found here.  <a href="http://paperjs.org/examples/hit-testing/">Example link</a>
+      <p>
+
+<canvas id="sketch1" style="height: 700px; width: 1000px"></canvas>
+
+<div class="example">
         <p>
-        Example link
+        Example 2
         </p>
     </div>
-  <canvas id="myCanvas" resize></canvas>
-  <div id="sketch1">
-</div>
-    <div class="nav">
-          <ul>
-            <li><a href="index.html">Example 1</a></li>
-            <li><a href="index0.html">Example 2</a></li>
-          </ul>
-        </div>
-
-      <br>
+    <p>
+      p5.js Mouse 1D example. I am using this example because I want to create a similar interaction to emulate (insert idea here).<br>
+      Example can be found here.  <a href="https://www.w3schools.com/">Example link</a>
+      <canvas id="sketch2" style="height: 700px; width: 1000px"></canvas>
+      <p>
+<br>
 
       <footer>
         <hr />
