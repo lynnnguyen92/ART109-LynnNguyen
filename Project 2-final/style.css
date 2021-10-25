@@ -1,0 +1,75 @@
+
+@import url('https://fonts.googleapis.com/css2?family=Roboto+Mono:wght@700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Montserrat&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Open+Sans:wght@600&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Dancing+Script:wght@700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Allura&family=Birthstone+Bounce:wght@500&family=WindSong:wght@500&display=swap');
+
+body{
+  background-color: #FFEADB;
+  color: #679B9B;
+  font-family: 'Montserrat', sans-serif;
+  max-width: 1200px;
+  margin: 0 auto;
+  font-size: 22px;
+
+
+
+}
+
+header {
+  display: flex;
+
+}
+
+.blinking{
+    animation:blinkingText 1s infinite;
+
+}
+
+@keyframes blinkingText{
+    0%{     color: #000;    }
+    49%{    color: #000; }
+    60%{    color: transparent; }
+    99%{    color:transparent;  }
+    100%{   color: #000;    }
+}
+
+.main-title{
+  display: inline-block;
+  font-size: 28px;
+  color: #FB8DA0;
+  text-shadow: 1px 3px 0 #969696, 1px 13px 5px #aba8a8;
+
+
+}
+.button {
+  background-color: #679B9B; /* Green */
+  border: none;
+  color: white;
+  padding: 20px 50px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 16px;
+  cursor: pointer;
+  margin-bottom: 0px;
+}
+
+
+
+.nav li {
+  display: inline-block;
+  font-size: 1.4em;
+  font-weight:600;
+}
+.nav a {
+  text-decoration: none;
+  color:#637373;
+  display: block;
+  padding: 10px 10px;
+}
+
+.nav li a:hover{
+  color: #DD903A;
+}
