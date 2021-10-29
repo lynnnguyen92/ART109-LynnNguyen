@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+   <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>
+      Project 2
+    </title>
+    <!-- CSS -->
+    <link rel="stylesheet" href="/style.css" />
+    <!-- Papper JS -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/paper.js/0.12.15/paper-full.min.js" integrity="sha512-ovjLI1ZcZe6bw+ImQ21r+sv8q/Vwob2kq7tFidK6E1LWfi0T4uobbmpfEU1//a9h9o5Kkt+MnMWf6rWlg0EiMw==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+     <script type="text/paperscript" src="sketch.js" canvas="mySketch"></script>
+     <!-- p5 js -->
+     <script src="https://cdnjs.cloudflare.com/ajax/libs/p5.js/1.4.0/p5.js" integrity="sha512-w1Bktzax55ZbjW5Mqjz8+mKz4KqRjEUU35Dpq/ath29yskKqIGwNIHiFNp03m/OiJWDXvdQ1/g6aV+l4PeVO7Q==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+     <script src="https://cdnjs.cloudflare.com/ajax/libs/p5.js/1.4.0/addons/p5.sound.js" integrity="sha512-U2sgwrFhl+Tgx9iGH9h5Ba2WyIjyCes+D0prtIFw3a0V+/fkaeL5Cd/VjyPHno9kUPE1rnNhBGTyvtZsfJp0xg==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+     <script src="sound.js" canvas="sound"></script>
+
+  </head>
+
+  <body>
+    <div class="background"></div>
+    <header>
+
+      <div class="main-title">
+
+        <h1><span style="color:#DD903A">Technical Exercise 8: Paper.js</span> </h1>
+        <h2> <span style="font-size:35px">Meta Balls Example</span></h2>
+      </div>
+</header>
+
+<div>
+        <p><b>For this exercise, I have modified some of the elements:</b><br><br>
+
+- Changing the color of the path from black to gradient colors<br>
+- Twisting the position of how the path is initialized <br>
+- Adding music when the mouse is pressed<br>
+- Changing the number of points and the speed  of the path when moving the mouse on the canvas<br><br>
+
+In general, I want to change the example from a simple wave movement of the paths to something that looks like a sound wave.
+I want to emulate the experience of watching the sunset while listening to music. <br><br>
+          Example can be found here.  <a href="http://paperjs.org/examples/smoothing/">Example link</a>
+        </p>
+      </div>
+ <div>
+     <canvas id="mySketch" width="1000" height="1000"></canvas>
+ </div>
+  </body>
+</html>
