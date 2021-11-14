@@ -4,11 +4,11 @@
 
 // Import required source code
 // Import three.js core
-import * as THREE from "./build/three.module.js";
+import * as THREE from "build/three.module.js";
 
 // Import add-ons for GLTF models and orbit controls
-import { OrbitControls } from "./src/OrbitControls.js";
-import { GLTFLoader } from "./src/GLTFLoader.js";
+import { OrbitControls } from "src/OrbitControls.js";
+import { GLTFLoader } from "src/GLTFLoader.js";
 
 //Identify div in HTML to place scene
 var container = document.getElementById("space");
@@ -37,7 +37,7 @@ var mesh;
 
 // Load GLTF model, add material, and add it to the scene
 const loader = new GLTFLoader().load(
-  "./assets/QR-02.glb",
+  "assets/QR-02.glb",
   function(gltf) {
     // Scan loaded model for mesh and apply defined material if mesh is present
     gltf.scene.traverse(function(child) {
