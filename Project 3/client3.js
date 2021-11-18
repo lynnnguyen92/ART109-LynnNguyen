@@ -193,7 +193,7 @@ function init() {
 
 
 
-  // Load GLTF AMONGUS
+
   const loader = new GLTFLoader().load(
     "./assets/QR code-animated.gltf", // comment this line out and un comment the line below to swithc models
     function(gltf) {
@@ -203,20 +203,19 @@ function init() {
 			mesh.scale.set(3, 3, 3);
 			// Add model to scene
 			scene.add(mesh);
-    },
-		//Check for and play animation frames
-	// 	mixer = new THREE.AnimationMixer(mesh);
-	// 	gltf.animations.forEach((clip) => {
-	// 		mixer.clipAction(clip).play();
-	// 	});
-	// },
+
+      // Check for and play animation frames
+      mixer = new THREE.AnimationMixer(mesh);
+      gltf.animations.forEach((clip) => {
+        mixer.clipAction(clip).play();
+      });
+	  },
     undefined,
     function(error) {
       console.error(error);
     }
   );
 
-   // Load GLTF TEAPOT
    const loader1 = new GLTFLoader().load(
     "./assets/QR code-05.gltf", // comment this line out and un comment the line below to swithc models
     function(gltf) {
