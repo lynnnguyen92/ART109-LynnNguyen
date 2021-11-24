@@ -12,7 +12,7 @@ import {
 import { GLTFLoader } from "./src/GLTFLoader.js";
 
 // Establish variables
-let container, scene, camera, renderer, mesh, mesh2, mixer, controls, clock;
+let container, scene, camera, renderer, mesh, mesh2, mixer,mixer2, controls, clock;
 let ticker = 0;
 const objects = [];
 let raycaster;
@@ -44,19 +44,20 @@ function init() {
     1000
   );
   camera.position.y = 10;
-	camera.position.z = 10;
+	// camera.position.x = 6;
+  camera.position.z = 120;
+
 
 
   // Define basic scene parameters
   scene = new THREE.Scene();
 
   scene.fog = new THREE.Fog(0x7985ba, 0, 200);
-
+  //
   // Define scene lighting
-  const light = new THREE.HemisphereLight(0xeeeeff, 0x777788, 0.75);
-  light.position.set(0.5, 1, 0.75);
+  const light = new THREE.HemisphereLight(0x000000, 0x000000, 0.75);
+  light.position.set(0, 1, 0.75);
   scene.add(light);
-
 
 
   // Define controls
@@ -191,16 +192,24 @@ function init() {
   // Insert completed floor into the scene
   scene.add(floor);
 
-
-
+  //
+  // Material to be added to model
+  var newMaterial = new THREE.MeshStandardMaterial({ color: 0xff57999 });
 
   const loader = new GLTFLoader().load(
-    "./assets/QR code-animated.gltf", // comment this line out and un comment the line below to swithc models
+    "./assets/qr.gltf", // comment this line out and un comment the line below to swithc models
     function(gltf) {
+
+      gltf.scene.traverse(function(child) {
+        if (child.isMesh) {
+          // child.material = newMaterial;
+        }
+      });
       // set position and scale
 			mesh = gltf.scene;
-			mesh.position.set(0, 1, 5);
-			mesh.scale.set(3, 3, 3);
+			mesh.position.set(1, 2, 10);
+			mesh.scale.set(5, 5, 5);
+      // mesh.rotation.y = 80;
 
 			// Add model to scene
 			scene.add(mesh);
@@ -217,24 +226,29 @@ function init() {
     }
   );
 
-   const loader1 = new GLTFLoader().load(
-    "./assets/QR code-05.gltf", // comment this line out and un comment the line below to swithc models
-    function(gltf) {
-      // set position and scale
-			mesh2 = gltf.scene;
-	    mesh2.position.set(0, 1, 5);
-	    mesh2.scale.set(3, 3, 3);
-
-	    // Add model to scene
-	    scene.add(mesh2);
-    },
-    undefined,
-    function(error) {
-      console.error(error);
-    }
-  );
-
-
+  //
+  // const loader1 = new GLTFLoader().load(
+  //   "./assets/QR code-animated.gltf", // comment this line out and un comment the line below to swithc models
+  //   function(gltf) {
+  //     // set position and scale
+	// 		mesh2 = gltf.scene;
+	// 		mesh2.position.set(60, 2, 10);
+	// 		mesh2.scale.set(3, 3, 3);
+  //
+	// 		// Add model to scene
+	// 		scene.add(mesh2);
+  //     //
+  //     // Check for and play animation frames
+  //     mixer2 = new THREE.AnimationMixer(mesh2);
+  //     gltf.animations.forEach((clip) => {
+  //       mixer2.clipAction(clip).play();
+  //     });
+	//   },
+  //   undefined,
+  //   function(error) {
+  //     console.error(error);
+  //   }
+  // );
 
 
   // Define Rendered and html document placement
@@ -281,8 +295,8 @@ function animate() {
 
     const delta = (time - prevTime) / 1000;
 
-    velocity.x -= velocity.x * 10.0 * delta;
-    velocity.z -= velocity.z * 10.0 * delta;
+    velocity.x -= velocity.x * 30.0 * delta;
+    velocity.z -= velocity.z * 30.0 * delta;
 
     velocity.y -= 9.8 * 100.0 * delta; // 100.0 = mass
 
