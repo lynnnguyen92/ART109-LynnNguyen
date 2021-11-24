@@ -59,18 +59,6 @@ function init() {
   light.position.set(0, 1, 0.75);
   scene.add(light);
 
-  // Add a directional light to the scene
-
-  // const directionalLight = new THREE.DirectionalLight(0xffffff, 0.4);
-  // directionalLight.position.set(100,100,100);
-  // directionalLight.target.position.set( 10, 100, 1000 );
-  // const directionalLight = new THREE.DirectionalLight(0x000000, 200);
-  // scene.add(directionalLight);
-  //
-  // // Add an ambient light to the scene
-  // const ambientLight = new THREE.AmbientLight(0x000000, 100);
-  // scene.add(ambientLight);
-
 
 
   // Define controls
@@ -238,31 +226,6 @@ function init() {
       console.error(error);
     }
   );
-
-  //
-  // const loader1 = new GLTFLoader().load(
-  //   "./assets/QR code-animated.gltf", // comment this line out and un comment the line below to swithc models
-  //   function(gltf) {
-  //     // set position and scale
-	// 		mesh2 = gltf.scene;
-	// 		mesh2.position.set(60, 2, 10);
-	// 		mesh2.scale.set(3, 3, 3);
-  //
-	// 		// Add model to scene
-	// 		scene.add(mesh2);
-  //     //
-  //     // Check for and play animation frames
-  //     mixer2 = new THREE.AnimationMixer(mesh2);
-  //     gltf.animations.forEach((clip) => {
-  //       mixer2.clipAction(clip).play();
-  //     });
-	//   },
-  //   undefined,
-  //   function(error) {
-  //     console.error(error);
-  //   }
-  // );
-
 
   // Define Rendered and html document placement
 	renderer = new THREE.WebGLRenderer({
