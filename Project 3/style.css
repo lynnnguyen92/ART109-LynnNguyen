@@ -7,8 +7,7 @@ body {
   font-family: "Source Code Pro", monospace;
   margin: auto;
   display: block;
-
-  background-color: rgba(153, 213, 226, 0.50);
+background-color:#f7d5e5;
 }
 
 /*Canvas style is used for styling the three.js window*/
