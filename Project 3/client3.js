@@ -12,7 +12,7 @@ import {
 import { GLTFLoader } from "./src/GLTFLoader.js";
 
 // Establish variables
-let container, scene, camera, renderer, mesh, mesh2, mixer,mixer2, controls, clock;
+let container, scene, camera, renderer, mesh1, mesh2,mesh3, mesh4, mixer1,mixer2,mixer3,mixer4, controls, clock;
 let ticker = 0;
 const objects = [];
 let raycaster;
@@ -45,7 +45,7 @@ function init() {
   );
   camera.position.y = 10;
 	// camera.position.x = 6;
-  camera.position.z = 120;
+  camera.position.z = 150;
 
 
 
@@ -53,11 +53,10 @@ function init() {
   scene = new THREE.Scene();
 
   scene.fog = new THREE.Fog(0x7985ba, 0, 200);
-  //
-  // Define scene lighting
-  const light = new THREE.HemisphereLight(0x000000, 0x000000, 0.75);
-  light.position.set(0, 1, 0.75);
-  scene.add(light);
+
+  // Add an ambient light to the scene
+  const ambientLight = new THREE.AmbientLight(0xffffff, 5);
+  scene.add(ambientLight);
 
 
 
@@ -175,13 +174,13 @@ function init() {
   const colorsFloor = [];
 
   for (let i = 0, l = position.count; i < l; i++) {
-    color.setRGB(Math.random() * 0.1+ 0.1, Math.random() * 0.3 + 0.1, Math.random() * 0.1 + 0.4);
+    color.setRGB(Math.random() * 0.1+ 0.1, Math.random() * 0.3 + 0.1, Math.random() * 0.1+0.5);
     colorsFloor.push(color.r, color.g, color.b);
   }
 
   floorGeometry.setAttribute(
     "color",
-    new THREE.Float32BufferAttribute(colorsFloor, 3)
+    new THREE.Float32BufferAttribute(colorsFloor, 4)
   );
 
   const floorMaterial = new THREE.MeshBasicMaterial({
@@ -193,32 +192,24 @@ function init() {
   // Insert completed floor into the scene
   scene.add(floor);
 
-  //
-  // Material to be added to model
-  var newMaterial = new THREE.MeshStandardMaterial({ color: 0xff57999 });
 
-  const loader = new GLTFLoader().load(
-    "./assets/qr.gltf", // comment this line out and un comment the line below to swithc models
+  const loader1 = new GLTFLoader().load(
+    "./assets/building.gltf", // comment this line out and un comment the line below to swithc models
     function(gltf) {
 
-      gltf.scene.traverse(function(child) {
-        if (child.isMesh) {
-          // child.material = newMaterial;
-        }
-      });
       // set position and scale
-			mesh = gltf.scene;
-			mesh.position.set(1, 2, 10);
-			mesh.scale.set(5, 5, 5);
+			mesh1 = gltf.scene;
+			mesh1.position.set(1, 2, 10);
+			mesh1.scale.set(5, 5, 5);
       // mesh.rotation.y = 80;
 
 			// Add model to scene
-			scene.add(mesh);
+			scene.add(mesh1);
 
       // Check for and play animation frames
-      mixer = new THREE.AnimationMixer(mesh);
+      mixer1 = new THREE.AnimationMixer(mesh1);
       gltf.animations.forEach((clip) => {
-        mixer.clipAction(clip).play();
+        mixer1.clipAction(clip).play();
       });
 	  },
     undefined,
@@ -226,6 +217,104 @@ function init() {
       console.error(error);
     }
   );
+  //
+  // Material to be added to model
+  var newMaterial = new THREE.MeshBasicMaterial({ color: 0xc49beb });
+
+  const loader2 = new GLTFLoader().load(
+    "./assets/QR-animated.gltf", // comment this line out and un comment the line below to swithc models
+    function(gltf) {
+      gltf.scene.traverse(function(child) {
+        if (child.isMesh) {
+          child.material = newMaterial;
+        }
+      });
+      // set position and scale
+      mesh2 = gltf.scene;
+      mesh2.position.set(1, 2, 10);
+      mesh2.scale.set(5, 5, 5);
+
+      // Add model to scene
+      scene.add(mesh2);
+      //
+      // Check for and play animation frames
+      mixer2 = new THREE.AnimationMixer(mesh2);
+      gltf.animations.forEach((clip) => {
+        mixer2.clipAction(clip).play();
+      });
+    },
+    undefined,
+    function(error) {
+      console.error(error);
+    }
+  );
+  // Material to be added to model
+  var newMaterial = new THREE.MeshStandardMaterial({ color: 0x000000 });
+  const loader3 = new GLTFLoader().load(
+    "./assets/QR-animated.gltf", // comment this line out and un comment the line below to swithc models
+    function(gltf) {
+      gltf.scene.traverse(function(child) {
+        if (child.isMesh) {
+          child.material = newMaterial;
+        }
+      });
+
+      // set position and scale
+			mesh3 = gltf.scene;
+			mesh3.position.set(70, -10, 10);
+			mesh3.scale.set(7, 7, 7);
+       mesh3.rotation.y = 10;
+
+
+
+			// Add model to scene
+			scene.add(mesh3);
+      //
+      // Check for and play animation frames
+      mixer3 = new THREE.AnimationMixer(mesh3);
+      gltf.animations.forEach((clip) => {
+        mixer3.clipAction(clip).play();
+      });
+	  },
+    undefined,
+    function(error) {
+      console.error(error);
+    }
+  );
+  // Material to be added to model
+  var newMaterial = new THREE.MeshStandardMaterial({ color: 0x000000 });
+  const loader4 = new GLTFLoader().load(
+    "./assets/QR-animated.gltf", // comment this line out and un comment the line below to swithc models
+    function(gltf) {
+      gltf.scene.traverse(function(child) {
+        if (child.isMesh) {
+          child.material = newMaterial;
+        }
+      });
+
+      // set position and scale
+      mesh4 = gltf.scene;
+      mesh4.position.set(-80,30, 80);
+      mesh4.scale.set(6, 6, 6);
+       mesh4.rotation.y = 180;
+
+
+
+      // Add model to scene
+      scene.add(mesh4);
+      //
+      // Check for and play animation frames
+      mixer4 = new THREE.AnimationMixer(mesh4);
+      gltf.animations.forEach((clip) => {
+        mixer4.clipAction(clip).play();
+      });
+    },
+    undefined,
+    function(error) {
+      console.error(error);
+    }
+  );
+
 
   // Define Rendered and html document placement
 	renderer = new THREE.WebGLRenderer({
@@ -233,7 +322,8 @@ function init() {
   });
   renderer.setPixelRatio(window.devicePixelRatio);
   renderer.setSize(window.innerWidth, window.innerHeight);
-  renderer.setClearColor( 0x138999, 10 );
+  // renderer.setClearColor( 0x138999, 12 );
+    renderer.setClearColor( 0xa17a99, 2 );
   document.body.appendChild(renderer.domElement);
 
   // Listen for window resizing
@@ -255,8 +345,10 @@ function animate() {
 
   requestAnimationFrame(animate);
 	var delta = clock.getDelta();
-	if (mixer) mixer.update(delta);
-
+	if (mixer1) mixer1.update(delta);
+  if (mixer2) mixer2.update(delta);
+  if (mixer3) mixer3.update(delta);
+  if (mixer4) mixer4.update(delta);
 
   const time = performance.now();
 
