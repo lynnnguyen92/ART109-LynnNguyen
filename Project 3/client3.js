@@ -12,7 +12,7 @@ import {
 import { GLTFLoader } from "./src/GLTFLoader.js";
 
 // Establish variables
-let container, scene, camera, renderer, mesh1, mesh2,mesh3, mesh4, mixer1,mixer2,mixer3,mixer4, controls, clock;
+let container, scene, camera, renderer, mesh1, mesh2, mesh3, mesh4, mixer1, mixer2, mixer3, mixer4, controls, clock;
 let ticker = 0;
 const objects = [];
 let raycaster;
@@ -44,7 +44,7 @@ function init() {
     1000
   );
   camera.position.y = 10;
-	// camera.position.x = 6;
+  // camera.position.x = 6;
   camera.position.z = 150;
 
 
@@ -66,20 +66,20 @@ function init() {
   // Identify the html divs for the overlays
   const blocker = document.getElementById("blocker");
   const instructions = document.getElementById("instructions");
-	clock = new THREE.Clock();
+  clock = new THREE.Clock();
 
   // Listen for clicks and respond by removing overlays and starting mouse look controls
   // Listen
-  instructions.addEventListener("click", function() {
+  instructions.addEventListener("click", function () {
     controls.lock();
   });
   // Remove overlays and begin controls on click
-  controls.addEventListener("lock", function() {
+  controls.addEventListener("lock", function () {
     instructions.style.display = "none";
     blocker.style.display = "none";
   });
   // Restore overlays and stop controls on esc
-  controls.addEventListener("unlock", function() {
+  controls.addEventListener("unlock", function () {
     blocker.style.display = "block";
     instructions.style.display = "";
   });
@@ -87,7 +87,7 @@ function init() {
   scene.add(controls.getObject());
 
   // Define key controls for WASD controls
-  const onKeyDown = function(event) {
+  const onKeyDown = function (event) {
     switch (event.code) {
       case "ArrowUp":
       case "KeyW":
@@ -116,7 +116,7 @@ function init() {
     }
   };
 
-  const onKeyUp = function(event) {
+  const onKeyUp = function (event) {
     switch (event.code) {
       case "ArrowUp":
       case "KeyW":
@@ -153,7 +153,7 @@ function init() {
 
   // Generate the ground
   let floorGeometry = new THREE.PlaneGeometry(2000, 2000, 100, 100);
-  floorGeometry.rotateX(-Math.PI/2 );
+  floorGeometry.rotateX(-Math.PI / 2);
 
   // Vertex displacement pattern for ground
   let position = floorGeometry.attributes.position;
@@ -162,7 +162,7 @@ function init() {
     vertex.fromBufferAttribute(position, i);
 
     vertex.x += Math.random() * 20 + 10;
-    vertex.y += Math.random() * 2 ;
+    vertex.y += Math.random() * 2;
     vertex.z += Math.random() * 20 + 10;
 
     position.setXYZ(i, vertex.x, vertex.y, vertex.z);
@@ -174,13 +174,14 @@ function init() {
   const colorsFloor = [];
 
   for (let i = 0, l = position.count; i < l; i++) {
-    color.setRGB(Math.random() * 0.1+ 0.1, Math.random() * 0.3 + 0.1, Math.random() * 0.1+0.5);
-    colorsFloor.push(color.r, color.g, color.b);
+    color.setRGB(Math.random() * 0.9 + 4, Math.random() * 0.8 + 0.6, Math.random() * 0.8 + 0.6);
+    colorsFloor.push(color.r, color.b, color.g);
   }
+
 
   floorGeometry.setAttribute(
     "color",
-    new THREE.Float32BufferAttribute(colorsFloor, 4)
+    new THREE.Float32BufferAttribute(colorsFloor, 3)
   );
 
   const floorMaterial = new THREE.MeshBasicMaterial({
@@ -195,25 +196,25 @@ function init() {
 
   const loader1 = new GLTFLoader().load(
     "./assets/building.gltf", // comment this line out and un comment the line below to swithc models
-    function(gltf) {
+    function (gltf) {
 
       // set position and scale
-			mesh1 = gltf.scene;
-			mesh1.position.set(1, 2, 10);
-			mesh1.scale.set(5, 5, 5);
+      mesh1 = gltf.scene;
+      mesh1.position.set(1, 2, 10);
+      mesh1.scale.set(5, 5, 5);
       // mesh.rotation.y = 80;
 
-			// Add model to scene
-			scene.add(mesh1);
+      // Add model to scene
+      scene.add(mesh1);
 
       // Check for and play animation frames
       mixer1 = new THREE.AnimationMixer(mesh1);
       gltf.animations.forEach((clip) => {
         mixer1.clipAction(clip).play();
       });
-	  },
+    },
     undefined,
-    function(error) {
+    function (error) {
       console.error(error);
     }
   );
@@ -223,8 +224,8 @@ function init() {
 
   const loader2 = new GLTFLoader().load(
     "./assets/QR-animated.gltf", // comment this line out and un comment the line below to swithc models
-    function(gltf) {
-      gltf.scene.traverse(function(child) {
+    function (gltf) {
+      gltf.scene.traverse(function (child) {
         if (child.isMesh) {
           child.material = newMaterial;
         }
@@ -244,7 +245,7 @@ function init() {
       });
     },
     undefined,
-    function(error) {
+    function (error) {
       console.error(error);
     }
   );
@@ -252,32 +253,32 @@ function init() {
   var newMaterial = new THREE.MeshStandardMaterial({ color: 0x000000 });
   const loader3 = new GLTFLoader().load(
     "./assets/QR-animated.gltf", // comment this line out and un comment the line below to swithc models
-    function(gltf) {
-      gltf.scene.traverse(function(child) {
+    function (gltf) {
+      gltf.scene.traverse(function (child) {
         if (child.isMesh) {
           child.material = newMaterial;
         }
       });
 
       // set position and scale
-			mesh3 = gltf.scene;
-			mesh3.position.set(70, -10, 10);
-			mesh3.scale.set(7, 7, 7);
-       mesh3.rotation.y = 10;
+      mesh3 = gltf.scene;
+      mesh3.position.set(70, -10, 10);
+      mesh3.scale.set(7, 7, 7);
+      mesh3.rotation.y = 10;
 
 
 
-			// Add model to scene
-			scene.add(mesh3);
+      // Add model to scene
+      scene.add(mesh3);
       //
       // Check for and play animation frames
       mixer3 = new THREE.AnimationMixer(mesh3);
       gltf.animations.forEach((clip) => {
         mixer3.clipAction(clip).play();
       });
-	  },
+    },
     undefined,
-    function(error) {
+    function (error) {
       console.error(error);
     }
   );
@@ -285,8 +286,8 @@ function init() {
   var newMaterial = new THREE.MeshStandardMaterial({ color: 0x000000 });
   const loader4 = new GLTFLoader().load(
     "./assets/QR-animated.gltf", // comment this line out and un comment the line below to swithc models
-    function(gltf) {
-      gltf.scene.traverse(function(child) {
+    function (gltf) {
+      gltf.scene.traverse(function (child) {
         if (child.isMesh) {
           child.material = newMaterial;
         }
@@ -294,9 +295,9 @@ function init() {
 
       // set position and scale
       mesh4 = gltf.scene;
-      mesh4.position.set(-80,30, 80);
+      mesh4.position.set(-80, 30, 80);
       mesh4.scale.set(6, 6, 6);
-       mesh4.rotation.y = 180;
+      mesh4.rotation.y = 180;
 
 
 
@@ -310,20 +311,20 @@ function init() {
       });
     },
     undefined,
-    function(error) {
+    function (error) {
       console.error(error);
     }
   );
 
 
   // Define Rendered and html document placement
-	renderer = new THREE.WebGLRenderer({
+  renderer = new THREE.WebGLRenderer({
     antialias: true, alpha: true
   });
   renderer.setPixelRatio(window.devicePixelRatio);
   renderer.setSize(window.innerWidth, window.innerHeight);
-  // renderer.setClearColor( 0x138999, 12 );
-    renderer.setClearColor( 0xa17a99, 2 );
+  renderer.setClearColor(0x138999, 12);
+  // renderer.setClearColor(0xa17a99, 1.9);
   document.body.appendChild(renderer.domElement);
 
   // Listen for window resizing
@@ -344,8 +345,8 @@ function onWindowResize() {
 function animate() {
 
   requestAnimationFrame(animate);
-	var delta = clock.getDelta();
-	if (mixer1) mixer1.update(delta);
+  var delta = clock.getDelta();
+  if (mixer1) mixer1.update(delta);
   if (mixer2) mixer2.update(delta);
   if (mixer3) mixer3.update(delta);
   if (mixer4) mixer4.update(delta);
