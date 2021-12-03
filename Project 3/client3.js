@@ -161,9 +161,9 @@ function init() {
   for (let i = 0, l = position.count; i < l; i++) {
     vertex.fromBufferAttribute(position, i);
 
-    vertex.x += Math.random() * 20 + 10;
+    vertex.x += Math.random() * 20 - 10;
     vertex.y += Math.random() * 2 ;
-    vertex.z += Math.random() * 20 + 10;
+    vertex.z += Math.random() * 20 - 10;
 
     position.setXYZ(i, vertex.x, vertex.y, vertex.z);
   }
@@ -173,14 +173,23 @@ function init() {
   position = floorGeometry.attributes.position;
   const colorsFloor = [];
 
+  // for (let i = 0, l = position.count; i < l; i++) {
+  //   color.setRGB(Math.random() * 0.1+ 0.1, Math.random() * 0.3 + 0.1, Math.random() * 0.1+0.5);
+  //   colorsFloor.push(color.r, color.g, color.b);
+  // }
+
   for (let i = 0, l = position.count; i < l; i++) {
-    color.setRGB(Math.random() * 0.1+ 0.1, Math.random() * 0.3 + 0.1, Math.random() * 0.1+0.5);
+    // H-S-L
+    // H - Hue value
+    // S - Saturation value
+    // L - Lightness
+    color.setRGB(Math.random() * (80), Math.random() *(2), Math.random() * (30));
     colorsFloor.push(color.r, color.g, color.b);
   }
 
   floorGeometry.setAttribute(
     "color",
-    new THREE.Float32BufferAttribute(colorsFloor, 4)
+    new THREE.Float32BufferAttribute(colorsFloor, 3)
   );
 
   const floorMaterial = new THREE.MeshBasicMaterial({
@@ -217,7 +226,7 @@ function init() {
       console.error(error);
     }
   );
-  //
+  
   // Material to be added to model
   var newMaterial = new THREE.MeshBasicMaterial({ color: 0xc49beb });
 
@@ -322,8 +331,8 @@ function init() {
   });
   renderer.setPixelRatio(window.devicePixelRatio);
   renderer.setSize(window.innerWidth, window.innerHeight);
-  // renderer.setClearColor( 0x138999, 12 );
-    renderer.setClearColor( 0xa17a99, 2 );
+  renderer.setClearColor( 0x6c7b8b, 2 );
+    // renderer.setClearColor( 0xa17a99, 2 );
   document.body.appendChild(renderer.domElement);
 
   // Listen for window resizing
