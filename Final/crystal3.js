@@ -7,7 +7,7 @@ import { GLTFLoader } from "./src/GLTFLoader.js";
 import { Water } from './src/Water2.js';
 
 // Establish variables
-let camera, scene, renderer, controls, material, particle, clock, mesh1, mixer1, mesh2, mixer2, mesh3, mixer3, mesh4, mixer4;
+let camera, scene, renderer, controls, material, particle, clock, mesh1, mixer1, mesh2, mixer2, mesh3, mixer3, mesh4, mixer4, mesh5, mixer5;
 let water;
 const objects = [];
 let raycaster;
@@ -134,7 +134,7 @@ function init() {
             mesh1 = gltf.scene;
             mesh1.position.set(-15, -38, -120);
             mesh1.scale.set(5, 5, 5);
-            // mesh1.rotation.y = 50;
+            // mesh1.rotation.y = 80;
 
 
             // Add model to scene
@@ -148,9 +148,32 @@ function init() {
         }
     );
 
-    // Load GLTF model2 and animation
+
 
     const loader2 = new GLTFLoader().load(
+        "./assets/rock2.gltf",
+        function (gltf) {
+            // set position and scale
+            mesh5 = gltf.scene;
+            mesh5.position.set(-1, -42, 200);
+            mesh5.scale.set(5, 5, 5);
+            // mesh1.rotation.y = 80;
+
+
+            // Add model to scene
+            scene.add(mesh5);
+
+
+        },
+        undefined,
+        function (error) {
+            console.error(error);
+        }
+    );
+
+    // Load GLTF model2 and animation
+
+    const loader3 = new GLTFLoader().load(
         "./assets/heart1.gltf",
         function (gltf) {
 
@@ -179,7 +202,7 @@ function init() {
 
 
 
-    const loader3 = new GLTFLoader().load(
+    const loader4 = new GLTFLoader().load(
         "./assets/crystals.gltf",
         function (gltf) {
             // set position and scale
@@ -205,8 +228,8 @@ function init() {
 
 
 
-    const loader4 = new GLTFLoader().load(
-        "./assets/tree.gltf",
+    const loader5 = new GLTFLoader().load(
+        "./assets/tree1.gltf",
         function (gltf) {
             // set position and scale
             mesh4 = gltf.scene;
@@ -352,8 +375,8 @@ function animate() {
 
         const delta = (time - prevTime) / 1000;
 
-        velocity.x -= velocity.x * 3.0 * delta;
-        velocity.z -= velocity.z * 3.0 * delta;
+        velocity.x -= velocity.x * 15.0 * delta;
+        velocity.z -= velocity.z * 15.0 * delta;
 
         velocity.y -= 9.8 * 100.0 * delta; // 100.0 = mass
 
