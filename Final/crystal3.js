@@ -7,7 +7,7 @@ import { GLTFLoader } from "./src/GLTFLoader.js";
 import { Water } from './src/Water2.js';
 
 // Establish variables
-let camera, scene, renderer, controls, material, particle, clock, mesh1, mixer1, mesh2, mixer2;
+let camera, scene, renderer, controls, material, particle, clock, mesh1, mixer1, mesh2, mixer2, mesh3, mixer3, mesh4, mixer4;
 let water;
 const objects = [];
 let raycaster;
@@ -33,14 +33,15 @@ function init() {
 
     // Establish the camera
     camera = new THREE.PerspectiveCamera(
-        50,
+        75,
         window.innerWidth / window.innerHeight,
         1,
         1000
     );
 
-    camera.position.y = 10;
-    camera.position.x = 800;
+    camera.position.y = 1;
+    camera.position.x = 50;
+    camera.position.z = 500;
 
 
 
@@ -109,7 +110,7 @@ function init() {
     scene.add(ambientLight);
 
     const directionalLight = new THREE.DirectionalLight(0xffffff, 0.6);
-    directionalLight.position.set(- 1, 1, 1);
+    directionalLight.position.set(1, 1, 1);
     scene.add(directionalLight);
 
     // Define controls
@@ -122,27 +123,24 @@ function init() {
     clock = new THREE.Clock();
 
 
-    // Load GLTF model1 and animation
+    // Load GLTF model1
 
 
 
     const loader1 = new GLTFLoader().load(
-        "./assets/plane2.gltf",
+        "./assets/rock.gltf",
         function (gltf) {
             // set position and scale
             mesh1 = gltf.scene;
-            mesh1.position.set(1, 0, 1);
+            mesh1.position.set(-15, -38, -120);
             mesh1.scale.set(5, 5, 5);
-            mesh1.rotation.y = -1;
+            // mesh1.rotation.y = 50;
 
 
             // Add model to scene
             scene.add(mesh1);
-            // Check for and play animation frames
-            mixer1 = new THREE.AnimationMixer(mesh1);
-            gltf.animations.forEach((clip) => {
-                mixer1.clipAction(clip).play();
-            });
+
+
         },
         undefined,
         function (error) {
@@ -158,8 +156,9 @@ function init() {
 
             // set position and scale
             mesh2 = gltf.scene;
-            mesh2.position.set(50, 1, 1);
+            mesh2.position.set(1, 6, 1);
             mesh2.scale.set(2, 2, 2);
+            mesh2.rotation.y = 60;
 
 
             // Add model to scene
@@ -176,6 +175,55 @@ function init() {
         }
     );
 
+    // Load GLTF model3 and animation
+
+
+
+    const loader3 = new GLTFLoader().load(
+        "./assets/crystals.gltf",
+        function (gltf) {
+            // set position and scale
+            mesh3 = gltf.scene;
+            mesh3.position.set(1, -1, 100);
+            mesh3.scale.set(2, 2, 2);
+            mesh3.rotation.y = 20;
+
+
+            // Add model to scene
+            scene.add(mesh3);
+            // Check for and play animation frames
+            mixer3 = new THREE.AnimationMixer(mesh3);
+            gltf.animations.forEach((clip) => {
+                mixer3.clipAction(clip).play();
+            });
+        },
+        undefined,
+        function (error) {
+            console.error(error);
+        }
+    );
+
+
+
+    const loader4 = new GLTFLoader().load(
+        "./assets/tree.gltf",
+        function (gltf) {
+            // set position and scale
+            mesh4 = gltf.scene;
+            mesh4.position.set(10, -70, -50);
+            mesh4.scale.set(10, 10, 10);
+            mesh4.rotation.y = .01;
+
+
+            // Add model to scene
+            scene.add(mesh4);
+
+        },
+        undefined,
+        function (error) {
+            console.error(error);
+        }
+    );
     // Listen for clicks and respond by removing overlays and starting mouse look controls
     // Listen
     instructions.addEventListener("click", function () {
@@ -287,8 +335,9 @@ function animate() {
     particle.rotation.x += 0.0000;
     particle.rotation.y -= 0.0010;
     var delta = clock.getDelta();
-    if (mixer1) mixer1.update(delta);
+    // if (mixer1) mixer1.update(delta);
     if (mixer2) mixer2.update(delta);
+    if (mixer3) mixer3.update(delta);
 
     const time = performance.now();
 
